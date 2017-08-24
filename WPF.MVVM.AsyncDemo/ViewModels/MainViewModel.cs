@@ -26,6 +26,18 @@ namespace WPF.MVVM.AsyncDemo.ViewModels
 
         #endregion
 
+        #region IsBusy
+
+        private bool _IsBusy;
+
+        public bool IsBusy
+        {
+            get { return _IsBusy; }
+            set { _IsBusy = value; OnPropertyChanged(); }
+        }
+
+        #endregion
+
 
         public ICommand LoadCommand => new RelayCommand(() => Load());
 
@@ -45,9 +57,13 @@ namespace WPF.MVVM.AsyncDemo.ViewModels
         {
             Status = "Loading...";
 
+            IsBusy = true;
+
             await Task.Delay(TimeSpan.FromSeconds(3));
 
             Status = "Loaded";
+
+            IsBusy = false;
         }
     }
 }

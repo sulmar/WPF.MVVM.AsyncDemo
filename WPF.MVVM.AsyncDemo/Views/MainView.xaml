@@ -13,6 +13,17 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style x:Key="BusyStyle" TargetType="{x:Type FrameworkElement}">
+            <Setter Property="Visibility" Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsBusy}" Value="true">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
 
     <!-- NOTE: Add reference System.Windows.Interactivity -->
     <i:Interaction.Triggers>
@@ -38,7 +49,21 @@
                     />
 
             <TextBlock Text="{Binding Status}" />
+            
+            
         </StackPanel>
+
+
+    
+        <ProgressBar 
+            Width="100"
+            Height="20"
+            Minimum="0" 
+            Maximum="100" 
+            IsIndeterminate="True"
+            Style="{StaticResource BusyStyle}"
+            />
+
     </Grid>
 
     
