@@ -13,6 +13,8 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
+
+    <!-- NOTE: Add reference System.Windows.Interactivity -->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding AsyncLoadCommand}" />
