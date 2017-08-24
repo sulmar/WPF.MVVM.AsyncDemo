@@ -1,0 +1,43 @@
+﻿<Window x:Class="WPF.MVVM.AsyncDemo.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.MVVM.AsyncDemo.Views"
+        xmlns:vm="clr-namespace:WPF.MVVM.AsyncDemo.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MainView" Height="300" Width="300">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding AsyncLoadCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    
+    <Grid>
+
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10" />
+            </Style>
+        </Grid.Resources>
+
+        <StackPanel>
+            <Button Content="Load" Command="{Binding LoadCommand}"/>
+
+            <Button Content="Async Load"
+                    Command="{Binding AsyncLoadCommand}"
+                    />
+
+            <TextBlock Text="{Binding Status}" />
+        </StackPanel>
+    </Grid>
+
+    
+</Window>
